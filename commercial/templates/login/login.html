@@ -1,0 +1,47 @@
+{% include 'common/header.html' %}
+<nav class="navbar col-12">
+    <a href="home">Home</a>
+    <a href="#">분석</a>
+    <a href="goProduct">매물검색</a>
+    <a href="#">경매</a>
+</nav>
+  <div class="container-fluid" >
+    <div class="login-wrap">
+      <div class="login-html" style="height:510px;">
+        <h1 class="label">CMJ</h1>
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked style="float:left"><label for="tab-1" class="tab">Sign In</label>
+        <input id="tab-2" type="radio" name="tab" class="for-pwd" ><label for="tab-2" class="tab" style="float:left">Sign Up</label>
+        <div class="login-form">
+          <div class="sign-in-htm">
+            {% csrf_token %}
+            <form action="login" method="post">
+            <div class="group">
+              <label for="id" class="label">Username or Email</label>
+              <input id="id" name="Id" type="text" class="input" value="{{id}}">
+            </div>
+            <div class="group">
+              <label for="password" class="label">Password</label>
+              <input id="password" name="password" type="password" class="input" data-type="password">
+              <div id="idCheck" style="color:red">비밀번호 혹은 아이디를 확인해주세요</div>
+            </div>
+            <div class="group">
+              <input id="login" type="submit" class="button" value="로그인">
+              <br>
+<div>
+ 회원가입은 반복부분이라 디장고에서는 구현하지 않았습니다.
+</div>
+            </div>
+              </form>
+            <div class="hr"></div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+</div>
+<!-- /#wrapper -->
+<!-- Bootstrap core JavaScript -->
+{%load static%}
+<link href="{% static 'commercial/css/login.css'%}" rel="stylesheet">
+<script src="{% static 'commercial/js/login.js' %}"></script>
+{% include 'common/footer.html' %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>부동산 모바일 웹페이지</title>
+    <!-- Bootstrap core CSS -->
+    {% load static %}
+    <link href="{%static 'commercial/css/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'commercial/css/simple-sidebar.css'%}" rel="stylesheet">
+    <link href="{% static 'commercial/css/chat.css'%}" rel="stylesheet">
+    <link href="{% static 'commercial/css/navbar.css'%}?after" rel="stylesheet">
+    <script src="{% static 'commercial/js/jquery.min.js'%}"></script>
+</head>
+<body>
+<button onclick="location.href='goChat'" id="chatBtn" title="chat">chat</button>
+<input type="hidden" id="session" value="{{request.session.userid}}">
+<!-- /#sidebar-wrapper -->
+<!-- Page Content -->

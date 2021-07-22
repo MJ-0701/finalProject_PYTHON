@@ -1,0 +1,10 @@
+{% load static %}
+<script src="{% static 'commercial/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'commercial/js/login.js' %}"></script>
+<!-- Menu Toggle Script -->
+</body>
+<script>
+    if ($("#session").val()!=""){
+      $("#login").attr("id", "logout").attr("href","logout").html("로그아웃")}
+</script>
+</html>

@@ -1,0 +1,43 @@
+{% include 'common/header.html' %}
+<nav class="navbar col-12">
+    <a href="home">Home</a>
+    <a href="#">분석</a>
+    <a href="goProduct">매물검색</a>
+    <a href="#">경매</a>
+</nav>
+
+<input type="hidden" id="user_jsonstr" value="{{comudata}}">
+<h1>게시글 관리</h1>
+<h4>게시글을 선택해주세요</h4>
+<table class="ex1">
+<caption></caption>
+
+<thead>
+<tr>
+<th scope="col">번호</th><th scope="col">작성날짜</th><th scope="col">내용</th>
+<th scope="col">분류</th><th scope="col">조회수</th><th scope="col">추천수</th>
+</tr>
+</thead>
+<tfoot>
+
+</tfoot>
+<tbody>
+
+</tbody>
+</table>
+<div>
+    <form id="mypage_commu_godetail" action="page_godetail" method="post">
+        <input type="hidden" value="" id="" name="">
+        <input type="hidden" value="" id="" name="">
+        <input type="hidden" value="" id="" name="">
+        <input type="hidden" value="" id="" name="">
+        <input type="hidden" value="" id="" name="">
+
+    </form>
+</div>
+
+{% load static %}
+<link href="{% static 'commercial/css/mypage.css'%}" rel="stylesheet">
+<script src="{% static 'commercial/js/community_list.js' %}"></script>
+
+{% include 'common/footer.html' %}

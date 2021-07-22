@@ -1,0 +1,72 @@
+{% include 'common/header.html' %}
+<nav class="navbar col-12">
+    <a href="/">Home</a>
+    <a href="goProduct">매물검색</a>
+    <a href="#">경매</a>
+    <a href="gologin" id="login">로그인</a>
+</nav>
+<h1>아파트 집값 분석</h1>
+<div style="overflow-y:auto;">
+    <div class="container">
+        <div class="rowshape">
+            <div class="col-md-4 col-sm-6" >
+                {% csrf_token %}
+                <form action="" method="post" id="hi">
+                    {% include 'analysis/modal.html' %}
+                    <label for="guName" class="tag" style="margin-top:10px">구 선택</label>
+                        <select name="guName" id="guName"  class="custom-select sources" placeholder="구 선택">
+                    </select>
+                    <label for="dongName" class="tag">동 선택</label>
+                        <select name="dongName" id="dongName"  class="custom-select sources" placeholder="동 선택">
+                    </select>
+                    <p style="color:white;"><small>현재 실거래가 데이터가 있는 동만 선택가능합니다.</small></p>
+                    <label for="apartName" class="tag">아파트 선택</label>
+                        <select name="apartName" id="apartName" class="custom-select sources" placeholder="아파트 선택">
+                    </select>
+                    <label for="exclusive_use_area" class="tag" id="width">전용면적&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>1평은 3.3058㎡입니다.</small></label>
+                         <select name="exclusive_use_area" id="exclusive_use_area" class="custom-select sources" placeholder="전용면적">
+                         </select>
+                    <label for="floor" class="tag">원하는 층을 입력하세요</label>
+                        <input name="floor" type="number" id="floor" placeholder="층">
+                    </select>
+                    <div class="row" style="width:100%">
+                    <h5 style="color:#848CB5;">추가 정보</h5><div style="width:38%"></div> <p id="myBtn" style="left:200px;color:#848CB5;">추가 정보 설명</p>
+                    </div>
+                    <div>
+                    <label for="moreInfoAdd" class="tag"> 금리</label>
+                    <select id="moreInfoAdd" class="custom-select sources">
+                        <option>선택하세요</option>
+                        <option>정기예금금리</option>
+                        <option>국고채(3년)</option>
+                        <option>CD</option>
+                    </select>
+                    </div>
+                    <div id="select_list" class="rowcontent">
+                        <h5 style="color:#848CB5">선택된 항목</h5>
+                    </div>
+                    <input id="commercial" type="button" class="button" value="분석 시작하기">
+                </form>
+            </div>
+        </div>
+        <div style="margin:100px"></div>
+    </div>
+</div>
+<script>
+    $('#commercial').click(function(){
+        if($("#floor").val() == '' || $("#floor").val() == 0){
+            alert("모든 정보를 입력하세요.")
+            return false;
+        }
+        document.getElementById('hi').action='goAnalysisApartmentResult'
+        $('#hi').submit()
+    })
+</script>
+{% load static %}
+<link href="{% static 'commercial/css/analysisCommercial.css'%}" rel="stylesheet">
+<link href="{% static 'commercial/css/modal.css'%}" rel="stylesheet">
+<link href="{% static 'commercial/css/c3.css'%}" rel="stylesheet">
+<script src="{% static 'commercial/js/d3.min.js'%}"></script>
+<script src="{% static 'commercial/js/c3.min.js'%}"></script>
+<script src="{% static 'commercial/js/analysisApartment.js'%}"></script>
+<script src="{% static 'commercial/js/modal.js'%}"></script>
+{% include 'common/footer.html' %}

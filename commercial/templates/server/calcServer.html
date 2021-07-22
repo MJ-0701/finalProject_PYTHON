@@ -1,0 +1,13 @@
+{% if length == 5 %}
+    {% for e in  result %}
+        <td>{{e}}원</td>
+    {% endfor %}
+{% else %}
+    {% for e in  result %}
+        {%if forloop.counter == 2 %}
+            <td>{{e}}%</td>
+        {% else %}
+            <td>{{e}}원</td>
+        {% endif %}
+    {% endfor %}
+{% endif %}

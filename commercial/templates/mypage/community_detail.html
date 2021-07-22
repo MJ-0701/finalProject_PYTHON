@@ -1,0 +1,47 @@
+{% include 'common/header.html' %}
+<nav class="navbar col-12">
+  <a href="home">Home</a>
+  <a href="#">분석</a>
+  <a href="goProduct">매물검색</a>
+  <a href="#">경매</a>
+</nav>
+<div class=" col-12">
+  <div class="">
+<article>
+		<div class="container_th" role="main">
+            <input type="hidden" id="jsondata" value="{{comudata}}">
+			<h2>게시글 수정</h2>
+            {% csrf_token %}
+			<form name="commu_form" id="commu_form" role="form" method="post" action="commu_detail_form">
+				<input type="hidden" id="wnum" name="wnum" value="{{comudata.WNUM}}">
+				<input type="hidden" id="anum" name="anum" value="{{comudata.ANUM}}">
+                <div class="mb-3">
+					<label for="tag">분류</label>
+					<input type="text" class="form-control" name="wgubun" id="wgubun" value="{{comudata.WGUBUN}}" readonly>
+				</div>
+                <div class="mb-3">
+					<label for="reg_id">지역 분류</label>
+					<input type="text" class="form-control" name="wloc" id="wloc" value="{{comudata.WLOC1}}/{{comudata.WLOC2}}" readonly>
+				</div>
+				<div class="mb-3">
+					<label for="title">제목</label>
+					<input type="text" class="form-control" name="wtitle" id="wtitle" placeholder="{{comudata.WTITLE}}">
+				</div>
+
+				<div class="mb-3">
+					<label for="content">내용</label>
+					<textarea style="height: 350px;" class="form-control" rows="5" name="wcontents" id="wcontents" placeholder="내용을 입력해 주세요" >{{comudata.WCONTENTS}}</textarea>
+				</div>
+                <div class="">
+				<button type="button" class="btn_th btn-sm btn-primary" id="btnSave" >저장</button>
+				<button type="button" class="btn_th btn-sm btn-primary" id="btnBack">뒤로가기</button>
+			</div>
+			</form>
+		</div>
+	</article>
+  </div>
+</div>
+{% load static %}
+<link href="{% static 'commercial/css/mypage.css' %}" rel="stylesheet">
+<script src="{% static 'commercial/js/community_detail.js' %}"></script>
+{% include 'common/footer.html' %}

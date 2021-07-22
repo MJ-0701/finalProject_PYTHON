@@ -1,0 +1,45 @@
+{% include 'common/header.html' %}
+<nav class="navbar col-12">
+  <a href="home">Home</a>
+  <a href="#">분석</a>
+  <a href="goProduct">매물검색</a>
+  <a href="#">경매</a>
+</nav>
+<div class="main col-12">
+  <h1>MY PAGE</h1>
+  <h5>원하는 서비스를 선택해주세요.</h5>
+  {% csrf_token %}
+  <form action="" method="post" id="user_action">
+    <input type="hidden" id="userNUM" name="user_NUM" value="">
+    <input type="hidden" id="userAID" name="user_AID" value="">
+    <div class="main">
+      <div class="row" style="border: 1px solid darkblue">
+        <div class="container-1 item col-6">
+          <div class="btn btn-one div_span" id="myinfor" >
+            <span >내정보 수정하기</span>
+          </div>
+        </div>
+        <div class="container-2 item col-6" style="right:0;">
+          <div class="btn btn-two div_span" id="mycomu">
+            <span style="margin:auto">내가쓴 게시글</span>
+          </div>
+        </div>
+        <div class="container-3 item col-6">
+          <div class="btn btn-three div_span" id="mycustomer">
+            <span >내 문의사항</span>
+          </div>
+        </div>
+        <div class="container-4 item col-6">
+          <div class="btn btn-four div_span" id="saless">
+            <span >내 경매관리</span>
+          </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+        <!-- /#wrapper -->
+      </div>
+    </div>
+</div>
+{% load static %}
+<link href="{% static 'commercial/css/mypage.css' %}" rel="stylesheet">
+<script src="{% static 'commercial/js/mypage.js' %}"></script>
+{% include 'common/footer.html' %}

@@ -1,0 +1,24 @@
+{% include 'common/header.html' %}
+<nav class="navbar col-12">
+    <a href="home">Home</a>
+    <a href="#">분석</a>
+    <a href="#">경매</a>
+    <a href="gologin" id="login">로그인</a>
+</nav>
+  <div class="container-fluid" >
+    <!-- /#page-content-wrapper -->
+    <form onsubmit="event.preventDefault();" role="search">
+      <label for="search" class="tab">매물을 검색해보세요</label>
+      <br>
+      <input id="search" type="search" placeholder="Search..." autofocus required />
+      <button type="submit">Go</button>
+    </form>
+    <div class="row">
+    </div>
+  </div>
+  <!-- /#wrapper -->
+</div>
+{% load static %}
+<script src="{% static 'commercial/js/productSearch.js'%}"></script>
+<link href="{% static 'commercial/css/product.css'%}" rel="stylesheet">
+{% include 'common/footer.html' %}

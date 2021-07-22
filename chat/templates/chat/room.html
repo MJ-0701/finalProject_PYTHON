@@ -1,0 +1,71 @@
+<!-- chat/templates/chat/room.html -->
+{% include 'common/header.html' %}
+<nav class="navbar col-12">
+    <a href="/">Home</a>
+    <a href="goAnalysis">분석</a>
+    <a href="goProduct">매물검색</a>
+    <a href="/auction/list">경매</a>
+</nav>
+<input type="button" value="뒤로가기" onclick="history.back();" />
+    <div class="mesgs" style="height:500px;border:2px solid white;">
+          <div class="msg_history" id="chat-log" style="diplay:block;float:right;">
+          </div>
+        </div>
+    <div class="type_msg">
+            <div class="input_msg_write">
+              <input type="text" id="chat-message-input" style="border:2px solid white;" class="write_msg" placeholder="Type a message" />
+                <button id="chat-message-submit" type="button" style="display:none;"></button>
+            </div>
+          </div>
+<script>
+    var roomName = {{ room_name_json }};
+
+    var chatSocket = new WebSocket(
+        'ws://' + window.location.host +
+        '/ws/chat/' + roomName + '/');
+
+    chatSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var message = data['message'];
+        console.log('message:'+message);
+        //document.querySelector('#chat-log').value += (message + '\n');
+        var cate = data['cate'];
+        var today = new Date();
+        var month = today.getMonth()+1;
+        var date = today.getDate();
+        var hour = today.getHours();
+        var minute = today.getMinutes();
+        console.log("cate:"+cate);
+        //if(cate == 'send'){
+            var send =  "<div class='sent_msg' style='right:0;height:auto;min-width:150px;'> <p>"+message+"</p> <span class='time_date'>"+today.toLocaleString()+"</span> </div> </div><br><br>"
+            $('#chat-log').append(send);
+        //}else{
+        //    var resp =  "<div class='incoming_msg' style='left:0;height:auto;min-width:150px;'> <p>"+message+"</p> <span class='time_date'>"+today.toLocaleString()+"</span> </div> </div><br><br>"
+        //    $('#chat-log').append(resp);
+        //}
+    };
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+    document.querySelector('#chat-message-input').focus();
+    document.querySelector('#chat-message-input').onkeyup = function(e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('#chat-message-submit').click();
+        }
+    };
+    document.querySelector('#chat-message-submit').onclick = function(e) {
+        var messageInputDom = document.querySelector('#chat-message-input');
+        var message = messageInputDom.value;
+        var message =
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'cate':'send'
+        }));
+        messageInputDom.value = '';
+    };
+</script>
+{% load static %}
+<script src="{% static 'commercial/js/home.js'%}"></script>
+<link href="{% static 'commercial/css/main.css'%}" rel="stylesheet">
+<link href="{% static 'commercial/css/chatList.css'%}" rel="stylesheet">
+{% include 'common/footer.html' %}

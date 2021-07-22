@@ -1,0 +1,151 @@
+<!--<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	{% static "" as baseUrl %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Auction List</title>
+</head>
+<body>-->
+{% include '../common/header.html' %}
+{% static "" as baseUrl %}
+<link rel="stylesheet" href="{% static 'auction/css/jquery.mobile-1.4.5.css'%}">
+<link rel="stylesheet" href="{% static 'auction/css/listview-grid.css'%}">
+<script src="{% static 'auction/js/jquery.js'%}"></script>
+<script src="{% static 'auction/js/jquery.mobile-1.4.5.min.js'%}"></script>
+<style>
+	.result_count{
+	margin-left: 20px;
+	}
+</style>
+<div data-role="page" data-theme="d" id="demo-page" class="my-page">
+	<div data-role="header" data-position="fixed" id="topsbj" style="background-color: #5289E6;">
+		<h1>경매 리스트</h1>
+		<a href="/commercial/home" data-shadow="false" data-iconshadow="false" data-icon="carat-l" data-iconpos="notext" data-ajax="false">Back</a>
+		<div id="topline1" style="height:10px;border-top: 1px solid white;"></div>
+		<div class="ui-field-contain" data-position="fixed">
+			<span class="result_count">전체 <span id="count_list"></span>건</span>
+			<span style="float:right;margin-right:30px;">
+			<img src="{% static 'auction/img/carat-l-black.png'%}" id="bfpage" name="bfpage"/><span id="nowpage">{{pcnt}}</span>/<span id="pagecnt"></span><img src="{% static 'auction/img/carat-r-black.png'%}" id="afpage" name="afpage"/>
+			</span>
+		</div>
+		<div id="topline2" style="height:10px;border-bottom: 1px solid white;"></div>
+	</div><!-- /header -->
+	<!--<div id="listmain" name="listmain">
+	</div>-->
+	<div role="main" class="ui-content">
+	<ul data-role="listview" data-inset="true">
+		{% for e in alist %}
+		<li onclick="detailpage({{e.0}})"><a href="#">
+			<img src="{{baseUrl}}{{e.7}}" class="ui-li-thumb" onerror="this.src='{{baseUrl}}noimg.jpg'" style="width: 5em;height: 5em;">
+			<h2><span style="color: black;">{{e.9}}</span></h2>
+			<p>{{e.3}}</p>
+			{% if e.12 == "진행" %}
+			<p>현재가 : {{e.11}} 원</p>
+			{% else %}
+			<p>가격 : {{e.11}} 원</p>
+			{% endif %}
+			<p class="ui-li-aside" style="top: 0.5em;right: 1em;">{{e.2}}</p>
+			<p class="ui-li-aside" style="top: 0.2em;right: 17em;">{{e.12}}</p>
+		</a></li>
+		{% endfor %}
+	</ul>
+	</div><!-- /content -->
+	<div data-role="footer" id="paging" data-position="fixed" style="height: 60px;background-color: #FFFFFF;">
+		<input type="hidden" id="nowp" name="nowp" value="{{pcnt}}">
+		<input type="hidden" id="ordby" name="ordby" value="{{aed}}">
+		<input type="hidden" id="maxpage" name="maxpage">
+		<!--<input type="button" id="listbtn" name="listbtn" style="width:50px;" value="<">-->
+		<table style="width:100%;height:100%;">
+			<tr>
+				<td align="center"><span id="gohome">HOME</span></td>
+				<td align="center"><span id="gobunsuk">분석</span></td>
+				<td align="center"><span id="gomaemul">매물검색</span></td>
+				<td align="center"><span id="gologin">로그인</span></td>
+			</tr>
+		</table>
+	</div>
+</div><!-- /page -->
+<script>
+var bfp = 0;
+var afp = 0;
+$(document).ready(function() {
+callcount();
+});
+
+$('#gohome').click(function(){
+location = "/commercial/home"
+});
+
+$('#gobunsuk').click(function(){
+location = "/goAnalysis"
+});
+
+$('#gomaemul').click(function(){
+location = "/goProduct"
+});
+
+$('#gologin').click(function(){
+location = "/gologin"
+});
+
+
+$('#listbtn').click(function(){
+location="/commercial/home";
+});
+
+function calllist(pcnt,sp,ep,orderby){
+location = "list_sel?pcnt="+pcnt+"&sp="+sp+"&ep="+ep+"&orderby="+orderby
+}
+
+function detailpage(num){
+location = "list_sel_detail?num="+num
+}
+
+$('#bfpage').click(function() {
+	var npage = $('#nowp').val()
+	var ordb = $('#ordby').val()
+	if(npage != 1){
+		var bpage = parseInt(npage) - 1;
+		calpage(bpage);
+		calllist(bpage,bfp,afp,ordb)
+	}
+});
+
+$('#afpage').click(function() {
+	var npage = $('#nowp').val()
+	var ordb = $('#ordby').val()
+	var maxp = $('#maxpage').val()
+	if(npage < maxp){
+		var apage = parseInt(npage) + 1;
+		calpage(apage);
+		calllist(apage,bfp,afp,ordb)
+	}
+});
+
+function calpage(pg){
+	if(pg == 1){
+	bfp = 1;
+	afp = 10;
+	} else {
+	bfp = 1 + (10*(pg-1))
+	afp = 10 * pg
+	}
+}
+
+function callcount(){
+$.ajax({
+		url : "list_sel_cnt",
+		type : "get",
+		success : function(result) {
+				$('#count_list').html(result);
+				var pagecnt = Math.ceil(result/10)
+				$('#pagecnt').html(pagecnt);
+				$('#maxpage').val(pagecnt);
+		}
+	});
+}
+
+</script>
+{% include '../common/footer.html' %}

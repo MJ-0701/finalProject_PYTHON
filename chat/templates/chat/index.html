@@ -1,0 +1,71 @@
+{% include 'common/header.html' %}
+<nav class="navbar col-12">
+    <a href="/">Home</a>
+    <a href="goAnalysis">분석</a>
+    <a href="goProduct">매물검색</a>
+    <a href="/auction/list">경매</a>
+</nav>
+<div class="main col-12">
+    <h3>채팅</h3>
+    <input id="room-name-submit" type="hidden" value="Enter"/>
+    <div class="messaging">
+        <div class="inbox_msg">
+            <div class="inbox_people">
+                <div class="headind_srch">
+                    <div class="recent_heading">
+                        {% if agubun_s == "R" %}
+                        <h5>공인중개사 리스트</h5>
+                        {% else %}
+                        <h5>채팅방 입장</h5>
+                        {% endif %}
+                    </div>
+                    <div class="srch_bar">
+                        <div class="stylish-input-group">
+                            <input type="text" id="room-name-input" placeholder="부동산 검색" >
+                            <span class="input-group-addon">
+                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                </span> </div>
+                    </div>
+                </div>
+                <div class="inbox_chat">
+                    {% if agubun_s == "R" %}
+                        {% for e in plist %}
+                       <div class="chat_list active_chat">
+                        <div class="chat_people">
+                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                            <div class="chat_ib">
+                                <h5>{{e.0}} <span class="chat_date">{{e.1}}</span></h5>
+                            </div>
+                        </div>
+                       </div>
+                        {% endfor %}
+                    {% else %}
+                       <div class="chat_list active_chat">
+                        <div class="chat_people">
+                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                            <div class="chat_ib">
+                                <h5>{{aid}} <span class="chat_date">개설</span></h5>
+                            </div>
+                        </div>
+                       </div>
+                    {% endif %}
+                </div>
+        </div>
+    </div>
+</div>
+<script>
+        document.querySelector('#room-name-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#room-name-submit').click();
+            }
+        };
+        document.querySelector('#room-name-submit').onclick = function(e) {
+            var roomName = document.querySelector('#room-name-input').value;
+            window.location.pathname = '/chat/' + roomName + '/';
+        };
+    </script>
+{% load static %}
+<script src="{% static 'commercial/js/home.js'%}"></script>
+<link href="{% static 'commercial/css/main.css'%}" rel="stylesheet">
+<link href="{% static 'commercial/css/chatList.css'%}" rel="stylesheet">
+{% include 'common/footer.html' %}

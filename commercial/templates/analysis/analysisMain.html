@@ -1,0 +1,29 @@
+{% include 'common/header.html' %}
+<nav class="navbar col-12">
+    <a href="/">Home</a>
+    <a href="goProduct">매물검색</a>
+    <a href="#">경매</a>
+    <a href="gologin" id="login">로그인</a>
+</nav>
+<div class="visual-wrap">
+		<a href="goAnalysisCommercial" title="상권분석 바로가기 버튼">
+			<div class="vbanner vanner1">
+				<h2>아파트매물 분석<br><small>성공적인 내집마련을 위한</small></h2>
+				<h6>실거래가 분석/예측</h6>
+				<p class="text-center"><img src="http://sg.sbiz.or.kr/assets/img/vbann1.png" alt=""></p>
+				<p class="text-right"><span class="btn btn-box"><i class="fa fa-angle-right" aria-hidden="true"></i> 바로가기</span></p>
+			</div>
+		</a>
+		<a href="goAnalysisApartment" title="아파트 집값 예측 바로가기 버튼">
+			<div class="vbanner vanner1" style="margin-top:20px;">
+				<h2>아파트 집값 예측<br><small>현명한 내 집 마련</small></h2>
+				<h6>집값 예측</h6>
+				<p class="text-center"><img src="http://sg.sbiz.or.kr/assets/img/vbann4.png" alt=""></p>
+				<p class="text-right"><span class="btn btn-box"><i class="fa fa-angle-right" aria-hidden="true"></i> 바로가기</span></p>
+			</div>
+		</a>
+	</div>
+<!-- Bootstrap core JavaScript -->
+{% load static %}
+<link href="{% static 'commercial/css/analysisMain.css'%}" rel="stylesheet">
+{% include 'common/footer.html' %}

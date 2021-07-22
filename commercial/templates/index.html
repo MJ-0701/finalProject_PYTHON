@@ -1,0 +1,51 @@
+{% include 'common/header.html' %}
+<nav class="navbar col-12">
+  <a href="goAnalysis">분석</a>
+  <a href="goProduct">매물검색</a>
+  <a href="/auction/list">경매</a>
+  <a href="gologin" id="login">로그인</a>
+</nav>
+<div class="main col-12">
+  <h1>부동산 사이트</h1>
+  <h5>원하는 서비스를 선택해주세요.</h5>
+  <input type="hidden" id="session" value="{{request.session.userid}}">
+  <input type="hidden" id="anum" value="">
+  <div class="main">
+    <div class="row" style="height:700px">
+      <div class="container-1 item col-6" onclick="location.href='goAnalysisApartment'" style="height:350px">
+        <div class="btn btn-one div_span">
+          <span >아파트 분석</span>
+        </div>
+      </div>
+      <div class="container-5 item col-6" style="right:0;height:350px">
+        <div class="btn btn-two div_span" onclick="location.href='goCalc'">
+          <span style="margin:auto;">세금 계산</span>
+        </div>
+      </div>
+      <div class="container-3 item col-6" style="height:350px">
+        <div class="btn btn-three div_span" id="mypage" onclick="location.href='goMyPage'">
+          <span >내정보</span>
+        </div>
+      </div>
+      <div class="container-4 item col-6" style="height:350px">
+        <div class="btn btn-four div_span" onclick="location.href='/auction/list'">
+          <span >경매</span>
+        </div>
+      </div>
+      <!--<div class="container-5 item col-12">
+        <div class="btn btn-four div_span" onclick="location.href='goCalc'">
+          <span >세금 원클릭 계산</span>
+        </div>
+      </div>-->
+      <!-- /#page-content-wrapper -->
+      <!-- /#wrapper -->
+    </div>
+    <div>
+    </div>
+  </div>
+</div>
+<!-- Bootstrap core JavaScript -->
+{% load static %}
+<script src="{% static 'commercial/js/home.js'%}"></script>
+<link href="{% static 'commercial/css/main.css'%}" rel="stylesheet">
+{% include 'common/footer.html' %}

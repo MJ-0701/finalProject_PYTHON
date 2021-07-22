@@ -1,0 +1,18 @@
+	<tr style="overflow-x:auto;height:20px">
+		<th style="padding:9px">구</th>
+		<th style="padding:9px">법정동</th>
+		<th style="padding:9px">아파트명</th>
+		<th style="padding:9px">전용면적</th>
+		<th style="padding:9px">층</th>
+		<th style="padding:9px">실거래가</th>
+	</tr>
+	{% for e in resultlist %}
+	<tr style="overflow-x:auto;height:20px;pad">
+		<td style="padding:9px;font-weight:bold;font-size:13px">{{e.SIGUNGU}}</td>
+		<td style="padding:9px;font-weight:bold;font-size:13px">{{e.DONG}}</td>
+		<td style="padding:9px;font-weight:bold;font-size:13px">{{e.APT}}</td>
+		<td style="padding:9px;font-weight:bold;font-size:13px">{{e.EXCLUSIVE_USE_AREA}}</td>
+		<td style="padding:9px;font-weight:bold;font-size:13px">{{e.FLOOR}}</td>
+		<td style="padding:9px;font-weight:bold;font-size:13px">{{e.TRANSACTION_REAL_PRICE}}</td>
+	</tr>
+	{% endfor %}

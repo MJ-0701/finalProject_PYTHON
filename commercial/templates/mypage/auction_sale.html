@@ -1,0 +1,60 @@
+{% include 'common/header.html' %}
+{% load static %}
+{% static "" as baseUrl %}
+<link href="{% static 'commercial/css/sale.css'%}" rel="stylesheet">
+<script src="{% static 'commercial/js/auction_sale.js' %}"></script>
+<input type="hidden" name="sale" id="sale" value="{{sale}}" >
+<div data-role="page">
+	<div data-role="header" data-position="fixed"style="background-color: #5289E6;">
+		<h1>나의 판매 정보</h1>
+
+	</div><!-- /header -->
+	<!--<div id="listmain" name="listmain">
+	</div>-->
+
+	 <table id="sales" style=" "class="w3-table-all w3-small">
+      <thead>
+      <tr>
+		<th style="font-size: 5px!important;  vertical-align: middle;">이미지</th>
+        <th style="font-size: 5px!important;  vertical-align: middle;">물건번호</th>
+        <th style="font-size: 5px!important;  vertical-align: middle;">용도</th>
+        <th style="font-size: 5px!important;  vertical-align: middle; text-align: center">위치</th>
+		<th style="font-size: 5px!important;  vertical-align: middle;">제목</th>
+		<th style="font-size: 5px!important;  vertical-align: middle;">조회수</th>
+		<th style="font-size: 5px!important;  vertical-align: middle;">현재가</th>
+		<th style="font-size: 5px!important;  vertical-align: middle;">입찰가</th>
+		<th style="font-size: 5px!important;  vertical-align: middle;">진행사항</th>
+		<th style="font-size: 5px!important;  vertical-align: middle;">경매종료날짜</th>
+      </tr>
+      </thead>
+      <tbody style="">
+		{% for e in sale%}
+		<tr>
+			<td style="font-size: 5px!important; "><img src="{{baseUrl}}{{e.8}}" onerror="this.src='{{baseUrl}}noimg.jpg'" style="width:7em; height:7em; "></td>
+			<td style="font-size: 5px!important; ">{{e.0}}</td>
+			<td style="font-size: 5px!important; ">{{e.2}}</td>
+			<td style="font-size: 5px!important; ">{{e.3}}</td>
+			<td style="font-size: 5px!important; ">{{e.12}}</td>
+			<td style="font-size: 5px!important;">{{e.6}}</td>
+			<td style="font-size: 5px!important; ">{{e.11}}</td>
+			<td style="font-size: 5px!important; ">{{e.14}}</td>
+			<td style="font-size: 5px!important; ">{{e.15}}</td>
+			<td style="font-size: 5px!important; ">{{e.13}}</td>
+
+		</tr>
+		{% endfor %}
+      </tbody>
+      <tfoot>
+
+      </tfoot>
+    </table>
+
+
+<a href="./" data-shadow="false" data-iconshadow="false" data-icon="carat-l" data-iconpos="notext" data-rel="back" data-ajax="false" style="color:red;">뒤로가기</a>
+
+
+
+
+
+
+{% include 'common/footer.html' %}

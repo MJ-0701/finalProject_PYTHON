@@ -1,0 +1,158 @@
+{% include 'common/header.html' %}
+<nav class="navbar col-12">
+    <a href="home">Home</a>
+    <a href="#">분석</a>
+    <a href="goProduct">매물검색</a>
+    <a href="#">경매</a>
+</nav>
+
+<input type="hidden" id="user_jsonstr" value="{{userinfor}}">
+<div class="tab_wrap">
+    <h1>MY PAGE</h1>
+    <h4>탭을 선택해주세요.</h4>
+    <div class="tab_menu_container" style="border:1px solid;">
+        <button class="tab_menu_btn on userinfor_btn" type="button">로그인 정보</button>
+        <button class="tab_menu_btn userinfor_btn" type="button">회원 정보</button>
+        <button class="tab_menu_btn userinfor_btn" type="button">결제 정보</button>
+        <button class="tab_menu_btn userinfor_btn" type="button">아이디 관리</button>
+    </div> <!-- tab_menu_container e -->
+    <div class="tab_box_container" style="border: 1px solid; height: 595px;">
+        <div class="tab_box on">
+            <h4>로그인 정보 관리 페이지</h4>
+            <div class="table-content">
+                {% csrf_token %}
+                <form action="mypage_MOBI" id="user_update" method="post">
+                    <input type="hidden" name="anum" id="anum" value="">
+            <div class="table-row">
+                <div class="table-data">아이디</div>
+                <div class="table-data"><input type="text" id="aid" name="aid" readonly value=""></div>
+            </div>
+            <div class="table-row">
+                <div class="table-data">비밀번호</div>
+                <div class="table-data"><input type="text" id="apwd" name="apwd" value=""></div>
+            </div>
+            <div class="table-row">
+               <div class="table-data">가입날짜</div>
+                <div class="table-data"><input type="text" id="ainday" name="ainday" readonly value=""></div>
+            </div>
+            <div class="table-row">
+                <div class="table-data">수정날짜</div>
+                <div class="table-data"><input type="text" id="achgday" name="achgday" readonly value=""></div>
+            </div>
+            <div class="table-row">
+                <div class="table-data">구분</div>
+                <div class="table-data"><input type="text" id="agubun" name="agubun" readonly value=""></div>
+            </div>
+            <div class="table-row">
+                <div class="table-data"><input type="button" class="myButton" value="수정하기" id="mobi"></div>
+                <div class="table-data"><input type="button" class="myButton" id="btnBack1" value="돌아가기"></div>
+            </div>
+                </form>
+        </div>
+        </div>
+        <div class="tab_box">
+            <h4>회원 정보 관리 페이지</h4>
+            <div class="table-content">
+                {% csrf_token %}
+                <form action="mypage_MOBI2" id="user_update2" method="post">
+                    <input type="hidden" name="anum2" id="anum2" value="">
+                <div class="table-row">
+                    <div class="table-data">이름</div>
+                    <div class="table-data"><input type="text" id="dname" name="dname"  value=""></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-data">생년월일</div>
+                    <div class="table-data"><input type="text" id="dbirth" name="dbirth" readonly value=""></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-data">성별</div>
+                    <div class="table-data"><input type="text" id="dgender" name="dgender" readonly value=""></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-data">전화번호</div>
+                    <div class="table-data"><input type="text" id="dtel" name="dtel"  value=""></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-data"><input type="button" class="myButton" value="수정하기" id="mobi2"></div>
+                    <div class="table-data"><input type="button" class="myButton" id="btnBack2" value="돌아가기"></div>
+                </div>
+                </form>
+            </div>
+        </div>
+        <div class="tab_box">
+            <h4>결제 정보 관리 페이지</h4>
+            <div class="table-content">
+                {% csrf_token %}
+                <form action="mypage_MOBI3" id="user_update3" method="post">
+                    <input type="hidden" name="anum" id="anum3" value="">
+            <div class="table-row">
+                <div class="table-data">결제시작일</div>
+                <div class="table-data"><input type="text" id="psdate" value=""></div>
+            </div>
+            <div class="table-row">
+                <div class="table-data">구독종료일</div>
+                <div class="table-data"><input type="text" id="pedate" value=""></div>
+            </div>
+            <div class="table-row">
+                <div class="table-data">결제금액</div>
+                <div class="table-data"><input type="text" id="ppay" value=""></div>
+            </div>
+            <div class="table-row">
+                <div class="table-data">결제수단</div>
+                <div class="table-data"><input type="text" id="pway" value=""></div>
+            </div>
+            <div class="table-row">
+                <div class="table-data">구독 여부</div>
+                <div class="table-data"><input type="text" id="pgubun" value=""></div>
+            </div>
+            <div class="table-row">
+                <div class="table-data">구독개월</div>
+                <div class="table-data"><input type="text" id="monthnum" value=""></div>
+            </div>
+            <div class="table-row">
+                <div class="table-data">은행명</div>
+                <div class="table-data"><input type="text" id="kinds" value=""></div>
+            </div>
+            <div class="table-row">
+                <div class="table-data">카드번호</div>
+                <div class="table-data"><input type="text" id="mentnum" value=""></div>
+            </div>
+            <div class="table-row">
+                <div class="table-data">할부개월</div>
+                <div class="table-data"><input type="text" id="inment" value=""></div>
+            </div>
+            <div class="table-row">
+                <div class="table-data"><input type="button" class="myButton" value="구독하기"></div>
+                <div class="table-data"><input type="button" class="myButton" id="btnBack3" value="돌아가기"></div>
+            </div>
+                </form>
+        </div>
+        </div>
+        <div class="tab_box"><h4>아이디 관리 페이지</h4>
+            <div class="table-content">
+                {% csrf_token %}
+                <form action="mypage_MOBI4" id="user_update4" method="post">
+                    <input type="hidden" name="anum" id="anum4" value="">
+        <div class="table-row">
+            <div class="table-data">아이디</div>
+            <div class="table-data"><input type="text" id="del_id" value=""></div>
+        </div>
+        <div class="table-row">
+            <div class="table-data">비밀번호</div>
+            <div class="table-data"><input type="text" id="del_pwd" value=""></div>
+        </div>
+        <div class="table-row">
+                <div class="table-data"><input type="button" class="myButton" value="탈퇴하기"></div>
+                <div class="table-data"><input type="button" class="myButton" id="btnBack4" value="돌아가기"></div>
+        </div>
+                </form>
+        </div>
+        </div>
+    </div> <!-- tab_box_container e -->
+</div> <!-- tab_wrap e -->
+
+{% load static %}
+<link href="{% static 'commercial/css/mypage.css'%}" rel="stylesheet">
+<script src="{% static 'commercial/js/user_infor.js' %}"></script>
+
+{% include 'common/footer.html' %}

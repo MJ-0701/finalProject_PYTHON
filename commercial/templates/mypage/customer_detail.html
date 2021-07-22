@@ -1,0 +1,47 @@
+{% include 'common/header.html' %}
+<nav class="navbar col-12">
+  <a href="home">Home</a>
+  <a href="#">분석</a>
+  <a href="goProduct">매물검색</a>
+  <a href="#">경매</a>
+</nav>
+<div class=" col-12">
+  <div class="">
+<article>
+		<div class="container_th" role="main">
+            <input type="hidden" id="jsondata" value="{{customerdata}}">
+			<h2>문의글 수정</h2>
+            {% csrf_token %}
+			<form name="commu_form" id="commu_form" role="form" method="post" action="customer_detail_form">
+				<input type="hidden" id="cnum" name="cnum" value="{{comudata.WNUM}}">
+				<input type="hidden" id="anum" name="anum" value="{{comudata.ANUM}}">
+                <div class="mb-3">
+					<label for="tag">분류</label>
+					<input type="text" class="form-control" name="c_type" id="c_type" value="" readonly>
+				</div>
+                <div class="mb-3">
+					<label for="reg_id">작성 날짜</label>
+					<input type="text" class="form-control" name="c_regdate" id="c_regdate" value="" readonly>
+				</div>
+				<div class="mb-3">
+					<label for="title">제목</label>
+					<input type="text" class="form-control" name="c_subject" id="c_subject" placeholder="">
+				</div>
+
+				<div class="mb-3">
+					<label for="content">내용</label>
+					<textarea style="height: 350px;" class="form-control" rows="5" name="c_content" id="c_content" placeholder="내용을 입력해 주세요" ></textarea>
+				</div>
+                <div class="">
+				<button type="button" class="btn_th btn-sm btn-primary" id="btnSave" >저장</button>
+				<button type="button" class="btn_th btn-sm btn-primary" id="btnBack">뒤로가기</button>
+			</div>
+			</form>
+		</div>
+	</article>
+  </div>
+</div>
+{% load static %}
+<link href="{% static 'commercial/css/mypage.css' %}" rel="stylesheet">
+<script src="{% static 'commercial/js/customer_detail.js' %}"></script>
+{% include 'common/footer.html' %}

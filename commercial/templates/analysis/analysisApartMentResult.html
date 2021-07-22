@@ -1,0 +1,46 @@
+{% include 'common/header.html' %}
+<nav class="navbar col-12">
+    <a href="/">Home</a>
+    <a href="goProduct">매물검색</a>
+    <a href="#">경매</a>
+    <a href="gologin" id="login">로그인</a>
+</nav>
+<h1>아파트 분석 결과</h1>
+<div style="overflow-y:auto;">
+    <div class="container" style="top:50%;">
+        <div class="rowresult">
+            <div class="serviceBox">
+                <h3 style="padding-top:10px;text-align:center;">해당 아파트 실거래가 정보</h3>
+                <p class="description">
+                    <table id="realdealpricetable" style="overflow-x:auto;width:100%;font-weight:bold;">
+                    </table>
+                </p>
+            </div>
+            <div id="predictValue">
+                <p>해당 아파트를 2020년 9월에 구매한다면 {{predict_value}}만원을 예상해봅니다.</p>
+            </div>
+            <div class="serviceBox">
+                <div id="chartCD" style="padding-right:10px">
+                </div>
+                <div id="chartKODEX3Y" style="padding-right:10px">
+                </div>
+                <div id="chartDepositInterestRate" style="padding-right:10px">
+                </div>
+            </div>
+        </div>
+        <input style="bottom:10px;" type="button" onclick="location.href='goAnalysisApartment'" value="뒤로가기">
+    </div>
+        <input type="hidden" id="selectedChart" value='{{selectedChart}}'>
+        <input type="hidden" id="guName" value='{{guName}}'>
+        <input type="hidden" id="dongName" value='{{dongName}}'>
+        <input type="hidden" id="aptName" value='{{aptName}}'>
+    <div id="bottom-margin" style="margin-bottom:100px"></div>
+</div>
+<!-- Bootstrap core JavaScript -->
+{% load static %}
+<link href="{% static 'commercial/css/analysisCommercial.css'%}" rel="stylesheet">
+<link href="{% static 'commercial/css/c3.css'%}" rel="stylesheet">
+<script src="{% static 'commercial/js/d3.min.js'%}"></script>
+<script src="{% static 'commercial/js/c3.min.js'%}"></script>
+<script src="{% static 'commercial/js/analysisApartmentResult.js'%}"></script>
+{% include 'common/footer.html' %}

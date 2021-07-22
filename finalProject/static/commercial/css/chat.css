@@ -1,0 +1,24 @@
+#chatBtn {
+    display: none;
+    position: fixed;
+    bottom: 300px;
+    right: 50%;
+    z-index: 99;
+    border: 1px;
+    border-style: solid;
+    border-color: rgba(77,77,77,0.1);
+    outline: none;
+    background-color: #F28705;
+    color: #ffffff;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: 'Noto Sans KR',sans-serif;
+    cursor: pointer;
+    padding: 25px 29px;
+    border-radius: 45px;
+}
+#chatBtn:hover {
+  background-color: white;
+  color: #F28705;
+  border: 1px solid #F28705;
+}
